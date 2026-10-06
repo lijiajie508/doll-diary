@@ -1,0 +1,8 @@
+# Docker 构建排除：node_modules / 构建产物 / 本地数据
+node_modules
+web/node_modules
+web/dist
+backend/target
+.git
+.idea
+*.iml

@@ -1,0 +1,25 @@
+# ===== 敏感配置（含豆包 API Key / 数据库密码，绝不提交）=====
+backend/src/main/resources/application.yml
+
+# ===== Java / Maven 构建产物 =====
+backend/target/
+*.class
+*.log
+
+# ===== Node / Vite 构建产物 =====
+web/node_modules/
+web/dist/
+web/.vite/
+npm-debug.log*
+
+# ===== IDE 与系统文件 =====
+.idea/
+*.iml
+.vscode/
+.DS_Store
+Thumbs.db
+
+# ===== 压缩包等大文件 =====
+*.zip
+*.rar
+*.7z

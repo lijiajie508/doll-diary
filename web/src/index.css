@@ -1,0 +1,113 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+    'Microsoft YaHei', sans-serif;
+}
+
+/* ================================================================
+   全站唯一主题：清爽简洁（白底细线，参考稿样式）
+   ================================================================ */
+:root{
+  --bg:#fffaf8;
+  --surface:#ffffff;
+  --surface-soft:#fdf3f1;
+  --ink:#5a454b;
+  --muted:#b39da3;
+  --line:#f4e5e3;
+  --accent:#ec9cb3;
+  --accent-strong:#dd7d98;
+  --accent-soft:#fdeef1;
+  --green:#9dbfa9;
+  --grad-1:#fdeef1;
+  --grad-2:#f2c4d0;
+  --shadow-sm:0 2px 10px rgba(90,69,75,.05);
+  --shadow-md:0 10px 30px rgba(90,69,75,.08);
+}
+
+body{
+  font-size:16px;
+  background-color:var(--bg);
+  background-image:url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%2296%22%20height=%2296%22%20viewBox=%220%200%2096%2096%22%3E%3Cg%20opacity=%220.4%22%3E%3Cg%20transform=%22translate(24,26)%22%3E%3Ccircle%20cx=%220%22%20cy=%22-4%22%20r=%223.2%22%20fill=%22%23f6cdd8%22/%3E%3Ccircle%20cx=%223.8%22%20cy=%22-1.2%22%20r=%223.2%22%20fill=%22%23f6cdd8%22/%3E%3Ccircle%20cx=%222.4%22%20cy=%223.2%22%20r=%223.2%22%20fill=%22%23f6cdd8%22/%3E%3Ccircle%20cx=%22-2.4%22%20cy=%223.2%22%20r=%223.2%22%20fill=%22%23f6cdd8%22/%3E%3Ccircle%20cx=%22-3.8%22%20cy=%22-1.2%22%20r=%223.2%22%20fill=%22%23f6cdd8%22/%3E%3Ccircle%20cx=%220%22%20cy=%220%22%20r=%221.7%22%20fill=%22%23e88ba8%22/%3E%3C/g%3E%3Cg%20transform=%22translate(78,72)%20scale(0.62)%22%3E%3Ccircle%20cx=%220%22%20cy=%22-4%22%20r=%223.2%22%20fill=%22%23f0d3da%22/%3E%3Ccircle%20cx=%223.8%22%20cy=%22-1.2%22%20r=%223.2%22%20fill=%22%23f0d3da%22/%3E%3Ccircle%20cx=%222.4%22%20cy=%223.2%22%20r=%223.2%22%20fill=%22%23f0d3da%22/%3E%3Ccircle%20cx=%22-2.4%22%20cy=%223.2%22%20r=%223.2%22%20fill=%22%23f0d3da%22/%3E%3Ccircle%20cx=%22-3.8%22%20cy=%22-1.2%22%20r=%223.2%22%20fill=%22%23f0d3da%22/%3E%3Ccircle%20cx=%220%22%20cy=%220%22%20r=%221.7%22%20fill=%22%23d98ba3%22/%3E%3C/g%3E%3Ccircle%20cx=%2266%22%20cy=%2218%22%20r=%221.6%22%20fill=%22%23e8b7c4%22/%3E%3Ccircle%20cx=%2214%22%20cy=%2264%22%20r=%221.3%22%20fill=%22%23e8b7c4%22/%3E%3Cpath%20d=%22M46%2074%20q5%20-6%2012%20-1%20q-6%205%20-12%201z%22%20fill=%22%23cfe0cf%22/%3E%3Cpath%20d=%22M88%2030%20q4%20-5%209%20-2%20q-4%204%20-9%202z%22%20fill=%22%23d4e4d4%22/%3E%3C/g%3E%3C/svg%3E");
+  background-repeat:repeat;
+  color:var(--ink);
+}
+::selection{background:var(--accent-soft);color:var(--ink)}
+
+/* make common cards feel like one product */
+[class*="card"], [class*="Card"]{border-color:var(--line)}
+
+/* Login / auth */
+.auth-page,.login-page{background:radial-gradient(circle at 12% 18%,var(--surface) 0 11%,transparent 31%),radial-gradient(circle at 88% 82%,var(--grad-1) 0 10%,transparent 34%),var(--bg)!important}
+
+/* Navbar: lighter, quieter, more app-like */
+nav,.navbar{box-shadow:0 1px 0 rgba(70,45,54,.04)!important}
+
+/* message layout */
+@media(min-width:900px){
+  .messages-page,.message-page{background:var(--bg)}
+}
+
+/* modals */
+[role="dialog"]{border:1px solid var(--line)!important;box-shadow:var(--shadow-md)!important}
+
+/* form controls */
+input,textarea,select{border-color:var(--line)!important;background:var(--surface)}
+input::placeholder,textarea::placeholder{color:var(--muted)}
+input:focus,textarea:focus,select:focus{border-color:var(--accent)!important;box-shadow:0 0 0 4px rgba(31,31,35,.08)!important}
+
+/* softer scrollbars */
+*{scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+*::-webkit-scrollbar{width:7px;height:7px}
+*::-webkit-scrollbar-thumb{background:var(--line);border-radius:99px}
+*::-webkit-scrollbar-track{background:transparent}
+
+/* admin tables（管理后台保持中性风，不随主题变色） */
+.admin-table{border:1px solid #f0f0f0;border-radius:16px;overflow:hidden;background:#fff}
+.admin-table thead th{background:#fafafa!important}
+.admin-table tbody tr:hover{background:#fff7f9!important}
+.admin-card:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(37,99,235,.15)}
+
+/* responsive cleanup */
+@media(max-width:760px){
+  .admin-table{display:block;overflow-x:auto}
+}
+
+/* V3 visual finishing */
+button{border-radius:10px}
+button:disabled{opacity:.58;cursor:not-allowed}
+
+/* tables and dashboard feel */
+.admin-table td,.admin-table th{height:46px}
+
+@media(max-width:900px){
+  /* Keep the main app usable on narrower screens without changing business logic. */
+  body{font-size:14px}
+}
+
+/* ===== Login interactions ===== */
+@media(max-width:860px){
+  .login-left{display:none}
+}
+.login-quick-btn{transition:all .15s ease}
+.login-quick-btn:hover{border-color:var(--accent)!important;background:var(--accent-soft)!important;transform:translateY(-1px)}
+.login-main-btn{transition:all .2s ease}
+.login-main-btn:hover{filter:brightness(1.06);box-shadow:0 12px 28px rgba(31,31,35,.25)!important;transform:translateY(-1px)}
+.login-main-btn:active{transform:translateY(0)}
+.login-avatar{transition:all .15s ease}
+.login-avatar:hover{border-color:var(--accent)!important}
+.login-switch-link:hover{text-decoration:underline}
+
+/* ===== 主题切换面板 ===== */
+
+/* 动态流响应式：大屏 3 列，窄屏自动降列 */
+@media (max-width: 1150px){
+  .feed-grid{ grid-template-columns: repeat(2, 1fr) !important; }
+}
+@media (max-width: 680px){
+  .feed-grid{ grid-template-columns: repeat(1, 1fr) !important; }
+}
