@@ -1,0 +1,374 @@
+/* ============================================================
+   登录页 · 水彩插画风
+   ------------------------------------------------------------
+   背景 = login-bg.png（左侧小熊帽女孩插画，右侧留白）
+   登录卡片靠右，白色圆角，粉色按钮
+   ============================================================ */
+
+.lg-page {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: url('/login-bg.png') center center / cover no-repeat;
+  perspective: 1600px;
+}
+
+/* ================= 柜门：打开动画 ================= */
+.lg-door {
+  position: absolute;
+  z-index: 5;
+  top: 17%;
+  height: 61%;
+  width: 11%;
+  background:
+    /* 中部矩形镶板（凹进去效果） */
+    linear-gradient(180deg, rgba(255,255,255,0.0) 0%, rgba(240,200,210,0.3) 8%, rgba(240,200,210,0.3) 92%, rgba(255,255,255,0.0) 100%) center/70% 100% no-repeat,
+    linear-gradient(180deg, #fef2f5 0%, #fae2e9 55%, #f6d5df 100%);
+  border: 2.5px solid #ecc6d0;
+  border-radius: 5px;
+  box-shadow:
+    inset 0 0 20px rgba(255, 255, 255, 0.6),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.35),
+    4px 0 14px rgba(200, 150, 160, 0.25);
+}
+/* 拱形玻璃窗（精致版：双层框 + 渐变） */
+.lg-door::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  width: 58%;
+  height: 34%;
+  transform: translateX(-50%);
+  border: 2.5px solid #ecc6d0;
+  outline: 1.5px solid rgba(255,255,255,0.7);
+  outline-offset: 3px;
+  border-bottom: none;
+  border-radius: 42px 42px 0 0;
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.85), rgba(255, 245, 248, 0.4));
+}
+/* 金色小球把手 */
+.lg-door::after {
+  content: '';
+  position: absolute;
+  top: 54%;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #ffe9a8, #d9b24a);
+  box-shadow: 0 1px 3px rgba(150, 120, 50, 0.6);
+}
+.lg-door-left {
+  left: 39%;
+  transform-origin: left center;
+  border-radius: 6px 0 0 6px;
+  animation: lg-door-open-left 1.8s cubic-bezier(0.55, 0, 0.35, 1) 0.6s forwards;
+}
+.lg-door-left::after { right: 9%; }
+.lg-door-right {
+  left: 50%;
+  transform-origin: right center;
+  border-radius: 0 6px 6px 0;
+  animation: lg-door-open-right 1.8s cubic-bezier(0.55, 0, 0.35, 1) 0.6s forwards;
+}
+.lg-door-right::after { left: 9%; }
+/* 开门后 180°：门板完全翻转 */
+@keyframes lg-door-open-left {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(-180deg); }
+}
+@keyframes lg-door-open-right {
+  from { transform: rotateY(0); }
+  to   { transform: rotateY(180deg); }
+}
+
+/* ================= 登录卡片：摆在衣柜空腔里 ================= */
+.lg-card {
+  position: absolute;
+  z-index: 3;
+  left: 50%;
+  top: 48%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  max-width: 430px;
+  padding: clamp(30px, 3.6vw, 38px) clamp(28px, 3.4vw, 36px);
+  background: rgba(255, 255, 255, 0.62);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(236, 156, 179, 0.45);
+  border-radius: 26px;
+  box-shadow: 0 18px 44px -14px rgba(190, 130, 130, 0.35);
+  animation: lg-card-in 0.9s ease 1.4s backwards;
+}
+@keyframes lg-card-in {
+  from { opacity: 0; transform: translate(-50%, -44%); }
+  to { opacity: 1; transform: translate(-50%, -50%); }
+}
+
+/* 顶部平台品牌区 */
+.lg-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+.lg-brand-emoji {
+  font-size: 26px;
+  line-height: 1;
+}
+.lg-brand-name {
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  color: var(--accent-strong);
+}
+
+.lg-title {
+  margin: 0 0 4px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-align: center;
+}
+.lg-sub {
+  margin: 0 0 22px;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.lg-field {
+  margin-bottom: 14px;
+}
+.lg-label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.lg-input {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: inherit;
+  font-size: 15px;
+  border: 1.4px solid var(--line);
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.9);
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
+}
+.lg-input::placeholder { color: var(--muted); }
+.lg-input:focus {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 4px rgba(236, 156, 179, 0.18);
+}
+
+.lg-submit {
+  width: 100%;
+  margin-top: 6px;
+  padding: 12px;
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: #fff;
+  border: 0;
+  border-radius: 12px;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
+  box-shadow: 0 10px 24px -10px rgba(221, 125, 152, 0.6);
+  transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.16s ease;
+}
+.lg-submit:hover:not(:disabled) { transform: translateY(-1px); filter: brightness(1.05); }
+.lg-submit:active:not(:disabled) { transform: translateY(0); }
+.lg-submit:disabled { opacity: 0.7; cursor: default; }
+
+.lg-switch {
+  margin: 18px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+.lg-switch button {
+  margin-left: 4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: 700;
+  color: var(--accent-strong);
+}
+.lg-switch button:hover { text-decoration: underline; }
+
+.lg-note {
+  margin: 0 0 14px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+.lg-note.is-error { background: var(--accent-soft); color: #a8445f; }
+.lg-note.is-ok { background: #f1f7f2; color: #557f62; }
+
+/* 注册态的昵称字段沿用 .lg-field，头像选择器 */
+.lg-avatars {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.lg-avatar {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.9);
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+.lg-avatar:hover { transform: translateY(-2px); }
+.lg-avatar[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(236, 156, 179, 0.2);
+}
+.lg-upload-row {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+.lg-upload {
+  padding: 7px 12px;
+  font-family: inherit;
+  font-size: 12.5px;
+  cursor: pointer;
+  border: 1px dashed var(--accent);
+  border-radius: 9px;
+  background: #fff;
+  color: var(--accent-strong);
+}
+.lg-upload:hover { background: var(--accent-soft); }
+.lg-file {
+  font-size: 12px;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* ============ 体验账号：右下角小角落 ============ */
+.lg-quick {
+  position: absolute;
+  right: clamp(14px, 2.4vw, 26px);
+  bottom: clamp(14px, 2.4vh, 26px);
+  z-index: 4;
+}
+.lg-quick-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 13px;
+  font-family: inherit;
+  font-size: 12px;
+  color: #8a6a75;
+  background: rgba(255, 255, 255, 0.75);
+  border: 1px solid rgba(236, 156, 179, 0.35);
+  border-radius: 999px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease;
+}
+.lg-quick-toggle:hover { background: #fff; color: var(--accent-strong); }
+.lg-quick-toggle .lg-caret {
+  font-size: 9px;
+  transition: transform 0.2s ease;
+}
+.lg-quick[data-open='true'] .lg-caret { transform: rotate(180deg); }
+
+.lg-quick-list {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 8px);
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 168px;
+  padding: 8px;
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid rgba(236, 156, 179, 0.25);
+  border-radius: 12px;
+  box-shadow: 0 14px 36px -10px rgba(190, 120, 130, 0.4);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  animation: lg-pop 0.2s ease-out;
+}
+.lg-quick[data-open='true'] .lg-quick-list { display: flex; }
+@keyframes lg-pop {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lg-quick-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 10px;
+  font-family: inherit;
+  font-size: 12.5px;
+  color: #5a454b;
+  background: none;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+.lg-quick-item:hover { background: var(--accent-soft); color: var(--accent-strong); }
+.lg-quick-item i { font-style: normal; font-size: 11px; color: rgba(90, 69, 75, 0.45); }
+.lg-quick-hint {
+  margin: 0;
+  padding: 4px 10px 2px;
+  font-size: 10.5px;
+  color: rgba(90, 69, 75, 0.45);
+}
+
+/* ================= 小屏 ================= */
+@media (max-width: 900px) {
+  /* 小屏时衣柜图缩小居中，卡片放页面中央 */
+  .lg-page { background-position: center top; }
+  .lg-card {
+    left: 50%;
+    top: 58%;
+    transform: translate(-50%, -50%);
+  }
+  @keyframes lg-card-in {
+    from { opacity: 0; transform: translate(-50%, -44%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+  }
+}
+@media (max-width: 640px) {
+  .lg-card { max-width: 88vw; top: 62%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lg-page *,
+  .lg-page *::before,
+  .lg-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
